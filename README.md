@@ -128,9 +128,6 @@ public class MyApplication {
     }
 
     public void prepareTrainingData() {
-        trainingData = new ArrayList<>();
-        testData = new ArrayList<>();
-
         //Here you can prepare your training data
         TrainingDataEncoder encoder = new TrainingDataEncoder();
         encoder.setImageResize(100);
