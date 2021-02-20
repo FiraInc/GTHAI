@@ -3,8 +3,11 @@ package com.zostio.myai.networkcomponents;
 import com.zostio.myai.StatUtils;
 import com.zostio.myai.training.TrainingData;
 
-public class NeuralNetwork{
+import java.io.Serializable;
 
+public class NeuralNetwork implements Serializable {
+
+    private NeuronLayer[] lastLayers;
     private NeuronLayer[] neuronLayers;
 
     public NeuralNetwork(int[] amountOfNeuronsInLayers) {
@@ -25,7 +28,6 @@ public class NeuralNetwork{
 
     public void forward(double[] trainingData) {
         neuronLayers[0] = new NeuronLayer(trainingData);
-
         for(int i = 1; i < neuronLayers.length; i++) {
             for(int j = 0; j < neuronLayers[i].neurons.length; j++) {
                 double sum = 0;
@@ -81,6 +83,7 @@ public class NeuralNetwork{
                 neuronLayers[i].neurons[j].update_weight();
             }
         }
+        lastLayers = neuronLayers;
     }
 
     // This function sums up all the gradient connecting a given neuron in a given layer
@@ -95,6 +98,14 @@ public class NeuralNetwork{
     }
 
     public double[] getResult() {
-        return new double[]{neuronLayers[neuronLayers.length-1].neurons[0].getActivation(), neuronLayers[neuronLayers.length-1].neurons[1].getActivation()};
+        double[] lastLayerValues = new double[neuronLayers[neuronLayers.length-1].neurons.length];
+        for (int i = 0; i < lastLayerValues.length; i++) {
+            lastLayerValues[i] = neuronLayers[neuronLayers.length-1].neurons[i].getActivation();
+        }
+        return lastLayerValues;
+    }
+
+    public NeuronLayer[] getLastLayers() {
+        return lastLayers;
     }
 }

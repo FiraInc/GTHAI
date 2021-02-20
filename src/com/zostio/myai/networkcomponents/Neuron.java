@@ -1,6 +1,8 @@
 package com.zostio.myai.networkcomponents;
 
-public class Neuron {
+import java.io.Serializable;
+
+public class Neuron implements Serializable {
     // Static variables
     static double minWeightValue;
     static double maxWeightValue;

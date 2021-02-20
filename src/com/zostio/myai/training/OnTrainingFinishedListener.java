@@ -1,5 +1,7 @@
 package com.zostio.myai.training;
 
-public interface OnTrainingFinishedListener {
+import java.io.Serializable;
+
+public interface OnTrainingFinishedListener extends Serializable {
     void trainingFinished();
 }

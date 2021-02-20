@@ -2,9 +2,10 @@ package com.zostio.myai.networkcomponents;
 
 import com.zostio.myai.StatUtils;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class NeuronLayer {
+public class NeuronLayer implements Serializable {
 
     public Neuron[] neurons;
 

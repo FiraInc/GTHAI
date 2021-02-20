@@ -1,6 +1,12 @@
 package com.zostio.myai;
 
-public class StatUtils {
+import java.io.Serializable;
+
+public class StatUtils implements Serializable {
+
+    public static final int BUILD_NUMBER = 1;
+    public static final String VERSION_CODE = "1.0.0";
+
     public static double getSigmoid(double x) {
         return 1 / (1 + Math.exp(-x));
     }

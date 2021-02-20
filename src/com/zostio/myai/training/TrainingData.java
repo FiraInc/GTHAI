@@ -1,6 +1,8 @@
 package com.zostio.myai.training;
 
-public class TrainingData {
+import java.io.Serializable;
+
+public class TrainingData implements Serializable {
     private double[] data;
     private double[] correctAnswer;
     private String fileName;

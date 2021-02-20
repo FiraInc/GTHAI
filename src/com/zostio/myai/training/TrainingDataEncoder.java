@@ -7,11 +7,14 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class TrainingDataEncoder {
+public class TrainingDataEncoder implements Serializable {
 
     private ArrayList<File> filesInFolderClean = new ArrayList<>();
+
+    private int resizeDataTo = 0;
 
     public ArrayList<TrainingData> getTrainingDataSet(String folder, double[] correctAnswer) throws DifferentResolutionsException {
         ArrayList<TrainingData> trainingDataSet = new ArrayList<>();
@@ -54,6 +57,10 @@ public class TrainingDataEncoder {
         StatUtils.printMessage("Trying to load images in folder: " + folder);
         File folderDir = new File(folder);
         File[] filesInFolderMess = folderDir.listFiles();
+        if (filesInFolderMess == null) {
+            StatUtils.printMessage("Could not find the folder specified");
+            return;
+        }
         StatUtils.printMessage("Found " + filesInFolderMess.length + " files in folder.");
 
         filesInFolderClean = new ArrayList<>();
@@ -69,7 +76,9 @@ public class TrainingDataEncoder {
         for (int i = 0; i < filesInFolderClean.size(); i++) {
             File file = filesInFolderClean.get(i);
             images[i] = getImageFromFile(file);
-            images[i] = resizeImage(images[i],75);
+            if (resizeDataTo != 0) {
+                images[i] = resizeImage(images[i],resizeDataTo);
+            }
             if (i != 0) {
                 if (images[i].getWidth() != images[i-1].getWidth() || images[i].getHeight() != images[i-1].getHeight()) {
                     throw new DifferentResolutionsException();
@@ -98,5 +107,13 @@ public class TrainingDataEncoder {
         graphics2D.drawImage(originalImage, 0, 0, targetWidth, targetHeight, null);
         graphics2D.dispose();
         return resizedImage;
+    }
+
+    public void setImageResize(int newWidth) {
+        if (resizeDataTo > -1) {
+            resizeDataTo = newWidth;
+        }else {
+            StatUtils.printMessage("Cannot resize image to a width lower than 0");
+        }
     }
 }

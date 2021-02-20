@@ -1,6 +1,8 @@
 package com.zostio.myai.training;
 
-public class DifferentResolutionsException extends Exception {
+import java.io.Serializable;
+
+public class DifferentResolutionsException extends Exception implements Serializable {
 
     @Override
     public void printStackTrace() {
