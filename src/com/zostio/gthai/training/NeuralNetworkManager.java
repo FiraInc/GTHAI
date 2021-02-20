@@ -1,8 +1,8 @@
-package com.zostio.myai.training;
+package com.zostio.gthai.training;
 
-import com.zostio.myai.StatUtils;
-import com.zostio.myai.networkcomponents.NeuralNetwork;
-import com.zostio.myai.networkcomponents.Neuron;
+import com.zostio.gthai.StatUtils;
+import com.zostio.gthai.networkcomponents.NeuralNetwork;
+import com.zostio.gthai.networkcomponents.Neuron;
 
 import java.io.*;
 import java.text.DecimalFormat;

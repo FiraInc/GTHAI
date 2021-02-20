@@ -1,7 +1,7 @@
-package com.zostio.myai.networkcomponents;
+package com.zostio.gthai.networkcomponents;
 
-import com.zostio.myai.StatUtils;
-import com.zostio.myai.training.TrainingData;
+import com.zostio.gthai.StatUtils;
+import com.zostio.gthai.training.TrainingData;
 
 import java.io.Serializable;
 

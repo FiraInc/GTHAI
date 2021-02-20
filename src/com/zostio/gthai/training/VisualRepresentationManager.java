@@ -1,7 +1,6 @@
-package com.zostio.myai.training;
+package com.zostio.gthai.training;
 
-import com.zostio.myai.StatUtils;
-import com.zostio.myai.networkcomponents.NeuronLayer;
+import com.zostio.gthai.networkcomponents.NeuronLayer;
 
 import javax.swing.*;
 import java.awt.*;

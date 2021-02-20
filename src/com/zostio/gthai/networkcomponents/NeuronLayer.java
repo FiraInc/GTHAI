@@ -1,9 +1,8 @@
-package com.zostio.myai.networkcomponents;
+package com.zostio.gthai.networkcomponents;
 
-import com.zostio.myai.StatUtils;
+import com.zostio.gthai.StatUtils;
 
 import java.io.Serializable;
-import java.util.*;
 
 public class NeuronLayer implements Serializable {
 

@@ -1,4 +1,4 @@
-package com.zostio.myai.networkcomponents;
+package com.zostio.gthai.networkcomponents;
 
 import java.io.Serializable;
 

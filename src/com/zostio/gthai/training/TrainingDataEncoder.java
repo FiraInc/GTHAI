@@ -1,6 +1,6 @@
-package com.zostio.myai.training;
+package com.zostio.gthai.training;
 
-import com.zostio.myai.StatUtils;
+import com.zostio.gthai.StatUtils;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

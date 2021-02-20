@@ -1,4 +1,4 @@
-package com.zostio.myai.training;
+package com.zostio.gthai.training;
 
 import java.io.Serializable;
 
