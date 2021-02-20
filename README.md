@@ -11,7 +11,7 @@ The library is easily installed by following these steps:
 * Create a folder named 'lib' next to your 'src' folder.
 * Put the GTHAI.jar file in the 'lib' folder.
 
-####Follow the steps for your editing program
+#### Follow the steps for your editing program
 
 ##### IntelliJ
 * Open your **project structure**, and select **'Libraries'**.
@@ -159,24 +159,3 @@ public class MyApplication {
 
 }
 ```
-
-# Markdown
-You can emphasize text with **bold**, *italic* or ***both***
-
-##Subheading
-
-#### Subsubheading
-
-Use a [reference link][1]
-
-[1]: src/com/zostio/myai/networkcomponents/
-
-```java
-class Hello {
-    public static void main(String[] args) {
-        System.out.println("");
-    }
-}
-```
-
-    injection
