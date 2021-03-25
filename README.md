@@ -35,7 +35,7 @@ The library is easily installed by following these steps:
 
 ## Usage
 ### How it works
-There are two classes that will be used a lot. **'NeuralNetworkManager.class'** and **'TrainingDataEncoder.class'**.
+There are two classes that will be used a lot. **'KnownDatasetStrategy.class'** and **'TrainingDataEncoder.class'**.
 You do not have to use the TrainingDataEncoder, but it can help you transform your dataset to data that the AI can read.
 
 ### Preparing training data
@@ -74,14 +74,14 @@ using the **'setImageResize(int width)'** method of the **'TrainingDataEncoder.c
 For the AI to work it needs a dataset. Then the AI will be trained based on the dataset.
 After the preferred amount of training is done, the AI is ready to be used. 
 
-In practice you start by defining the **'NeuralNetworkManager.class'**. 
+In practice you start by defining the **'KnownDatasetStrategy.class'**. 
 You must provide the manager information about how many neurons and hidden layers you want it to use,
 information about how many outcomes there are, and optionally limit the training to a certain 
 amount of iterations.
 
 
 
-    NeuralNetworkManager manager = new NeuralNetworkManager(new int[]{16,16}, 2, 5000);
+    KnownDatasetStrategy manager = new KnownDatasetStrategy(new int[]{16,16}, 2, 5000);
 
 >In this example we used 2 hidden layers, with 16 neurons each. We also told the AI there are
 >2 possible outcomes, and limited the iterations to 5000
@@ -109,7 +109,7 @@ import java.util.ArrayList;
 
 public class MyApplication {
 
-    private static NeuralNetworkManager manager;
+    private static KnownDatasetStrategy manager;
     private static ArrayList<TrainingData> trainingData;
     private static ArrayList<TrainingData> testData;
 
@@ -121,7 +121,7 @@ public class MyApplication {
         With the following configuration, the AI will create 2 hidden layers,
         with 16 neurons each. The training will run for 10000 iterations.
         */
-        manager = new NeuralNetworkManager(new int[]{16,16}, possibleOutcomes, 10000);
+        manager = new KnownDatasetStrategy(new int[]{16,16}, possibleOutcomes, 10000);
         manager.setProgressPrintout(true);
         prepareTrainingData();
         trainAI();

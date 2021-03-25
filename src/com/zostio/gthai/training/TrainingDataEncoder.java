@@ -15,6 +15,15 @@ public class TrainingDataEncoder implements Serializable {
     private ArrayList<File> filesInFolderClean = new ArrayList<>();
 
     private int resizeDataTo = 0;
+    private boolean progressPrintOut;
+
+    public TrainingDataEncoder(boolean progressPrintout) {
+        this.progressPrintOut = progressPrintout;
+    }
+
+    public TrainingDataEncoder() {
+        this.progressPrintOut = false;
+    }
 
     public ArrayList<TrainingData> getTrainingDataSet(String folder, double[] correctAnswer) throws DifferentResolutionsException {
         ArrayList<TrainingData> trainingDataSet = new ArrayList<>();
@@ -65,8 +74,13 @@ public class TrainingDataEncoder implements Serializable {
 
         filesInFolderClean = new ArrayList<>();
         for (int i = 0; i < filesInFolderMess.length;i++) {
+            if (progressPrintOut) {
+                StatUtils.printMessage("Working on image " + i);
+            }
             if (filesInFolderMess[i].getName().endsWith(".png") || filesInFolderMess[i].getName().endsWith(".jpg")) {
                 filesInFolderClean.add(filesInFolderMess[i]);
+            }else {
+                StatUtils.printMessage("Image " + i + ": " + filesInFolderMess[i] + " is of wrong type");
             }
         }
     }
@@ -77,6 +91,9 @@ public class TrainingDataEncoder implements Serializable {
             File file = filesInFolderClean.get(i);
             images[i] = getImageFromFile(file);
             if (resizeDataTo != 0) {
+                if (progressPrintOut) {
+                    StatUtils.printMessage("Resizing image" + i + "...");
+                }
                 images[i] = resizeImage(images[i],resizeDataTo);
             }
             if (i != 0) {
@@ -101,6 +118,10 @@ public class TrainingDataEncoder implements Serializable {
 
     private BufferedImage resizeImage(BufferedImage originalImage, int targetWidth) {
         int targetHeight = originalImage.getHeight()/originalImage.getWidth()*targetWidth;
+
+        if (targetHeight < 1) {
+            targetHeight = 1;
+        }
 
         BufferedImage resizedImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_RGB);
         Graphics2D graphics2D = resizedImage.createGraphics();

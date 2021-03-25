@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class StatUtils implements Serializable {
 
-    public static final int BUILD_NUMBER = 2;
-    public static final String VERSION_CODE = "1.1.0";
+    public static final int BUILD_NUMBER = 3;
+    public static final String VERSION_CODE = "1.1.1";
 
     public static double getSigmoid(double x) {
         return 1 / (1 + Math.exp(-x));
