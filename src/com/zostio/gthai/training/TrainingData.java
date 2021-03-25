@@ -11,6 +11,8 @@ public class TrainingData implements Serializable {
         this.correctAnswer = correctAnswer;
     }
 
+    public TrainingData() {}
+
     public void setData(double[] data) {
         this.data = data;
     }

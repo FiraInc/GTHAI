@@ -4,12 +4,11 @@ import com.zostio.gthai.StatUtils;
 import com.zostio.gthai.networkcomponents.NeuralNetwork;
 import com.zostio.gthai.networkcomponents.Neuron;
 
-import java.io.*;
+import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-@Deprecated
-public class NeuralNetworkManager {
+public class NeuralNetworkStrategy {
 
     public static final int RUN_FOREVER = 0;
 
@@ -46,11 +45,11 @@ public class NeuralNetworkManager {
 
     DecimalFormat numberFormat = new DecimalFormat("0.00");
 
-    public NeuralNetworkManager(int[] hiddenLayersNeurons, int outputLayerNeurons) {
+    public NeuralNetworkStrategy(int[] hiddenLayersNeurons, int outputLayerNeurons) {
         configureNeuralNetwork(hiddenLayersNeurons, outputLayerNeurons, 0);
     }
 
-    public NeuralNetworkManager(int[] hiddenLayersNeurons, int outputLayerNeurons, int iterations) {
+    public NeuralNetworkStrategy(int[] hiddenLayersNeurons, int outputLayerNeurons, int iterations) {
         configureNeuralNetwork(hiddenLayersNeurons, outputLayerNeurons, iterations);
     }
 

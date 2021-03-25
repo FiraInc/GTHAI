@@ -9,6 +9,7 @@ import java.text.DecimalFormat;
 public class VisualRepresentationManager {
 
     private NeuralNetworkManager manager;
+    private NeuralNetworkStrategy strategy;
     JFrame frame;
     JPanel panel;
 
@@ -20,9 +21,18 @@ public class VisualRepresentationManager {
     boolean readyToPack = false;
     boolean doneBigPack = false;
 
+    public void startRepresenting(NeuralNetworkStrategy strategy) {
+        this.strategy = strategy;
+        createVisuals();
+    }
+
+    @Deprecated
     public void startRepresenting(NeuralNetworkManager neuralNetworkManager) {
         this.manager = neuralNetworkManager;
+        createVisuals();
+    }
 
+    private void createVisuals() {
         //1. Create the frame.
         frame = new JFrame("Neural network representation");
         panel = new JPanel();
@@ -78,7 +88,11 @@ public class VisualRepresentationManager {
         }
 
         try {
-            Thread.sleep(manager.visualRefreshFreq);
+            if (manager != null) {
+                Thread.sleep(manager.visualRefreshFreq);
+            }else {
+                Thread.sleep(strategy.visualRefreshFreq);
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -97,11 +111,24 @@ public class VisualRepresentationManager {
 
     private void addStatsPanel() {
         JPanel statsPanel = new JPanel();
-        JLabel statusText = new JLabel(manager.getStatus());
+        JLabel statusText = null;
+        if (manager != null) {
+            statusText = new JLabel(manager.getStatus());
+        }else {
+            statusText = new JLabel(strategy.getStatus());
+        }
+
         statusText.setFont(new Font("Helvetica", Font.PLAIN, 20));
         statsPanel.add(statusText, BorderLayout.NORTH);
 
-        JLabel eta = new JLabel(manager.getEstimatedTimeLeft());
+        JLabel eta = null;
+
+        if (manager != null) {
+            eta = new JLabel(manager.getEstimatedTimeLeft());
+        }else {
+            eta = new JLabel(strategy.getEstimatedTimeLeft());
+        }
+
         eta.setFont(new Font("Helvetica", Font.PLAIN, 15));
         statsPanel.add(eta, BorderLayout.NORTH);
 
@@ -112,7 +139,13 @@ public class VisualRepresentationManager {
     public void addNeurons() {
         JPanel networkPanel = new JPanel();
         networkPanel.setPreferredSize(new Dimension(10000000,1000000));
-        NeuronLayer[] neuronLayers = manager.neuralNetwork.getLastLayers();
+        NeuronLayer[] neuronLayers = null;
+        if (manager != null) {
+            neuronLayers = manager.neuralNetwork.getLastLayers();
+        }else {
+            neuronLayers = strategy.neuralNetwork.getLastLayers();
+        }
+
         if (neuronLayers == null) {
             return;
         }
@@ -155,7 +188,7 @@ public class VisualRepresentationManager {
                 JLabel label = new JLabel(String.valueOf(numberFormat.format(activation)));
 
                 if (i == 0) {
-                    label.setText("Input");
+                    //label.setText("Input");
                 }
 
                 layerPanel.add(label, BorderLayout.SOUTH);
